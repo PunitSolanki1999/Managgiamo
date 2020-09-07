@@ -1,0 +1,53 @@
+{% extends 'hotel_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" >
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Customer Detail</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px; margin-bottom:10px;"></div>
+                <b class="text-dark">Customer ID: </b><i class="float-right">{{ customer.customer_id }}</i><br>
+                <b class="text-dark">Name: </b><i class="float-right">{{ customer.fname }} {{ customer.mname }} {{ customer.lname }}</i><br>
+                <b class="text-dark">Aadhar No.: </b><i class="float-right">{{ customer.addar_no }}</i><br>
+                <b class="text-dark">Room ID: </b><i class="float-right">{{ customer.room_id }}</i><br>
+                <b class="text-dark">No. Of Days: </b><i class="float-right">{{ customer.no_of_days }}</i><br>
+                <b class="text-dark">Contact No.: </b><i class="float-right">{{ customer.phone }}</i><br>
+                <b class="text-dark">Address: </b><i class="float-right">{{ customer.address }}</i><br>
+                <b class="text-dark">Total Cost: </b><i class="float-right">{{ customer.cost }}</i><br>
+                <b class="text-dark">Amount Paid by customer: </b><i class="float-right">{{ customer.amount_paid }}</i><br>
+                <b class="text-dark">Check-In Date: </b><i class="float-right">{{ customer.checkin_date }}</i><br>
+                {% if customer.checkout_date != None %}
+                  <b class="text-dark">Check-Out Date: </b><i class="float-right">{{ customer.checkout_date }}</i><br>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

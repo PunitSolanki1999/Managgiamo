@@ -1,0 +1,132 @@
+{% extends 'library_base/base1.html' %}
+{% block content %}
+    <style>
+        @media screen and (max-width: 1000px)  {
+          .punit {
+            margin-top:160px;
+            height:auto;
+          }
+        }
+        @media screen and (min-width: 1000px)  {
+          .page-container {
+            height:auto;
+          }
+        }
+        @media screen and (max-width: 1000px)  {
+          .page-container {
+            height:auto;
+          }
+        }
+    </style>
+    <div class="punit" >
+        <div class="page-container" >
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">overview</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2>{{ member }}</h2>
+                                                <span>members Registered</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart1"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-assignment-check"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2> {{ book }} </h2>
+                                                <span>Book Issued</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart2"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-book-image"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2>{{ total_book }}</h2>
+                                                <span>Total Books in Library</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart3"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <h2 class="title-1 m-b-25">Recent Fine Detail</h2>
+                            <div class="table-responsive table--no-card m-b-40">
+                                <table class="table table-borderless table-striped table-earning">
+                                    <thead>
+                                        <tr>
+                                            <th>Acc. No.</th>
+                                            <th>ISBN No.</th>
+                                            <th>Member ID</th>
+                                            <th>Fine</th>
+                                            <th class="text-right">Date of Issue</th>
+                                            <th class="text-right">Date to Return</th>
+                                            <th class="text-right">Date of Return</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in fine %}
+                                        <tr>
+                                            <td>{{ i.accession_no }}</td>
+                                            <td>{{i.isbn_number}}</td>
+                                            <td>{{i.fine}}</td>
+                                            <td>{{i.member_id}}</td>
+                                            <td class="text-right">{{i.date_of_issue}}</td>
+                                            <td class="text-right">{{i.date_of_return}}</td>
+                                            <td class="text-right">{{i.return_date}}</td>
+                                        </tr>
+                                        {% if forloop.counter == 5 %}
+                                        {{"<!--"}}
+                                        {% endif %}
+                                        {% endfor %}
+                                        <div style="visibility:hidden">
+                                        {{ "-->" }}
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

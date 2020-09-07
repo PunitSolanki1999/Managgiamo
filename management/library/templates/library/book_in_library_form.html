@@ -1,0 +1,82 @@
+{% extends 'library_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit">
+    <div class="page-container">
+      <div class='main-content'>
+        <div class="col-lg-6 offset-lg-3">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <h3 class="text-center title-2">Library Book Detail</h3>
+              </div>
+              <div style="border:1px solid orange; background-color: orange; margin-top:7px;"></div>
+              <form action='.' method='POST'>{% csrf_token %} 
+                <label>Book_name:</label> <input class="form-control" type='text' name='search'><br>or<br>
+                <label>Author/Accession no/Publication:</label> <input class="form-control" type='text' name='search1'><br>
+                <label class="inline">Search By: </label>
+                <label class="radio-inline"><input type="radio" name="filter" checked value="author">Author</label>
+                <label class="radio-inline"><input type="radio" name="filter" value="accession">Accession</label>
+                <label class="radio-inline"><input type="radio" name="filter" value="publication">Publication</label><br><br>
+                <button type="submit" class="btn btn-success btn-sm">
+                  <i class="fa fa-dot-circle-o"></i> Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>  
+        {% if confirm == True %}
+          {% if book %}
+            <div class="row m-t-30">
+              <div class="col-md-10 offset-md-1">
+                <!-- DATA TABLE-->
+                <div class="table-responsive m-b-40">
+                  <table class="table table-borderless table-data3">
+                    <thead>
+                      <tr>
+                        <th>Accession No</th>
+                        <th>Isbn Number</th>
+                        <th>Super Key</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in book %}
+                        <tr class="btn-link" style="cursor:pointer; " onclick="location.href = this.getElementsByTagName('a').item(0).getAttribute('href');">
+                          <td ><a href="{% url 'library:book-in-library' pk=i.pk %}">{{ i.accession_no }}</a></td>
+                          <td> {{ i.isbn_number }}  </td>
+                          <td>{{ i.superkey }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <div class="offset-md-3 col-md-4 alert alert-danger" role="alert">
+              <h3>Book Not Available in db</h3>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

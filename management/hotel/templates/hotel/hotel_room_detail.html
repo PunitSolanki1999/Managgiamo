@@ -1,0 +1,65 @@
+{% extends 'hotel_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" >
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg-5 offset-lg-3">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Room Detail</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px; margin-bottom:10px;"></div>
+                <b class="text-dark">Room ID : </b><i class="float-right">{{ room.room_id }}</i><br>
+                <b class="text-dark">Room No. : </b><i class="float-right">{{ room.room_no }}</i><br>
+                <b class="text-dark">Room Cost : </b><i class="float-right">{{ room.room_cost }}</i><br>
+                {% if room.ac == True %}
+                  <b class="text-dark">AC : </b><i class="float-right">Yes</i>
+                {% else %}
+                  <b class="text-dark">AC : </b><i class="float-right">No </i>
+                {% endif %}<br>
+                {% if room.available == True %}
+                  <b class="text-dark">Available : </b><i class="float-right">Yes</i>
+                {% else %}
+                  <b class="text-dark">Available : </b><i class="float-right">No </i>
+                {% endif %}
+                <br>
+                {% if room.available == True %}
+                  <a href="{% url 'hotel:customer-checkin' pk=room.pk %}"><button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Check In
+                    </button>
+                  </a>
+                {% else %}
+                  <a class="btn btn-default" disabled="disabled"><button type="submit" disabled="disabled" class="btn btn-success btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Check In
+                    </button>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

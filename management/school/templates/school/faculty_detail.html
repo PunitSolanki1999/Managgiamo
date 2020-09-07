@@ -1,0 +1,66 @@
+{% extends 'school_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" >
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg-10 offset-lg-1">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Faculty Detail</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px; margin-bottom:10px;"></div>
+                <div class="row">
+                  <div class="col-md-4 ">
+                    <img class="img-fluid img-responsive img-thumbnail" style="border-color:black; width:215px; height:260px;" id="blah" src="{{ faculty.picture.url }}" alt="your image" />
+                  </div>
+                  <div class="col-md ">
+                    <b class="text-dark">Faculty ID : </b><i class="float-right">{{ faculty.faculty_id }}</i><br>
+                    <b class="text-dark">Name : </b><i class="float-right">{{ faculty.fname }} {{ faculty.mname }} {{ faculty.lname }}</i><br>
+                    <b class="text-dark">Email ID : </b><i class="float-right">{{ faculty.emailid }}</i><br>
+                    <b class="text-dark">Contact No. : </b><i class="float-right">{{ faculty.phone }}</i><br>
+                    <b class="text-dark">Father Name : </b><i class="float-right">{{ faculty.father_name }}</i><br>
+                    <b class="text-dark">Father Phone : </b><i class="float-right">{{ faculty.father_phone }}</i><br>
+                    <b class="text-dark">Mother Name : </b><i class="float-right">{{ faculty.mother_name }}</i><br>
+                    <b class="text-dark">Mother Phone : </b><i class="float-right">{{ faculty.mother_phone }}</i><br>
+                    <b class="text-dark">DOB : </b><i class="float-right">{{ faculty.dob }}</i><br>
+                    <b class="text-dark">salary : </b><i class="float-right">{{ faculty.salary }}</i><br>
+                    <b class="text-dark">class : </b><i class="float-right">{{ faculty.clas }}</i><br>
+                    <b class="text-dark">subject : </b><i class="float-right">{{ faculty.subject }}</i><br>
+                    <b class="text-dark">State : </b><i class="float-right">{{ faculty.state }}</i><br>
+                    <b class="text-dark">City : </b><i class="float-right">{{ faculty.city }}</i><br>
+                    <b class="text-dark">Address : </b><i class="float-right">{{ faculty.address }}</i><br>
+                    {% if faculty.to_date != None %}
+                      <b class="text-dark">From Date  : </b><i class="float-right">{{ faculty.from_date }}</i><br>
+                      <b class="text-dark">To Date    : </b><i class="float-right">{{ faculty.to_date }}</i><br>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

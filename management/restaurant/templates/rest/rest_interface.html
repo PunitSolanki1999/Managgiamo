@@ -1,0 +1,195 @@
+{% extends 'rest_base/base1.html' %}
+{% block content %}
+    <style>
+        @media screen and (max-width: 1000px)  {
+          .punit {
+            margin-top:160px;
+            height:auto;
+          }
+        }
+        @media screen and (min-width: 1000px)  {
+          .page-container {
+            height:auto;
+          }
+        }
+        @media screen and (max-width: 1000px)  {
+          .page-container {
+            height:auto;
+          }
+        }
+    </style>
+    <div class="punit" >
+        <div class="page-container" >
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">overview</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2>{{ employee }}</h2>
+                                                <span>Employee Registered</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart1"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-store"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2> {{ food }}</h2>
+                                                <span>No. of Food in Menu</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart2"></canvas>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-assignment-check"></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <h2>{{ ingredient }}</h2>
+                                                <span>Ingredient Available</span>
+                                            </div>
+                                            <div class="overview-chart">
+                                                <canvas id="widgetChart3"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+                    
+                    <div class="container">
+                        <div>
+                            <script>
+                                $(document).ready(function(){
+                                var endpoint = '{% url "rest:predict" %}'
+                                var defaultData = []
+                                var labels = []
+                                var color = []
+                                $.ajax({
+                                    method: 'GET',
+                                    url: endpoint,
+                                    success: function(data){
+                                        labels = data.labels
+                                        defaultData = data.default
+                                        color = data.color
+                                        console.log(color)
+                                        console.log(data)
+                                        var ctx = document.getElementById('myChart').getContext('2d');
+                                        var myChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                    label: 'Food Item sell in your area',
+                                                    data: defaultData,
+                                                    backgroundColor: color,
+                                                    minBarLength: 2,
+                                                    //  borderColor: [
+                                                    // 'rgba(255, 99, 132, 1)',]
+                                                }]
+                                            },
+                                            options:{
+                                                
+                                                legend:{
+                                                    labels:{
+                                                        fontColor: 'black',
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    },
+                                    
+                                    error: function(error_data){
+                                        console.log("error")
+                                        console.log(error_data)
+                                    }
+                                })
+                        
+                            })
+                    //     var ctx = document.getElementById('myChart').getContext('2d');
+                    // var myChart = new Chart(ctx, {
+                    //     type: 'bar',
+                    //     data: {
+                    //         labels: labels,
+                    //         datasets: [{
+                    //             label: '# of Votes',
+                    //             data: defaultData,
+                    //             backgroundColor: [
+                    //                 'rgba(255, 99, 132, 0.2)',
+                    //                 'rgba(54, 162, 235, 0.2)',
+                    //                 'rgba(255, 206, 86, 0.2)',
+                    //                 'rgba(75, 192, 192, 0.2)',
+                    //                 'rgba(153, 102, 255, 0.2)',
+                    //                 'rgba(255, 159, 64, 0.2)'
+                    //             ],
+                    //             borderColor: [
+                    //                 'rgba(255, 99, 132, 1)',
+                    //                 'rgba(54, 162, 235, 1)',
+                    //                 'rgba(255, 206, 86, 1)',
+                    //                 'rgba(75, 192, 192, 1)',
+                    //                 'rgba(153, 102, 255, 1)',
+                    //                 'rgba(255, 159, 64, 1)'
+                    //             ],
+                    //             borderWidth: 1
+                    //         }]
+                    //     },
+                    //     options: {
+                    //         scales: {
+                    //             yAxes: [{
+                    //                 ticks: {
+                    //                     beginAtZero: true
+                    //                 }
+                    //             }]
+                    //         }
+                    //     }
+                    // });
+                    
+                     
+                            </script>
+                        </div>
+                    </div>
+                        
+                        <div class = ''>
+                            <div class='col-sm-12' url-endpoint="{% url 'rest:predict' %}">
+                                <canvas id="myChart" width="350" height="150" style="background-color: white;"></canvas>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

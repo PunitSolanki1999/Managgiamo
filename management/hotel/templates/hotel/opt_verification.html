@@ -1,0 +1,51 @@
+{% extends 'hotel_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container">
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Forget Password</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px;"></div>
+                <form action='.' method='POST'>{% csrf_token %}
+                  {% if confirm %}
+                    {% if otp %}
+                      <div class="offset-md-3 col-md-4 alert alert-danger" role="alert">OTP is Incorrect</div>
+                    {% endif %}
+                  {% endif %}
+                  <h1>OTP Verification</h1>
+                  <input class="form-control" type="text" name="otp"><br>
+                  <button class="btn btn-success btn-sm" type="submit">submit</button>
+                  <a class="btn btn-link" href="{% url 'hotel:otp-verification' username=hotel.username %}">Re-send</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

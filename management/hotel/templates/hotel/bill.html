@@ -1,0 +1,108 @@
+{% extends 'hotel_base/base1.html' %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    .bill{
+      border:2px solid black;
+      border-radius:5px;
+      padding-top:20px;
+      padding-bottom:70px;
+      padding-left:10px;
+      padding-right:10px;
+    }
+    .name{
+      text-align:center;
+      border-bottom: 2px solid black;
+    }
+    .detail{
+      margin-top:5px;
+    }
+    .sign{
+      border:1px solid black;
+      border-radius:5px;
+      padding:20px;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea * {
+        visibility: visible;
+      } 
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" >
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Bill</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px; margin-bottom:10px;"></div>
+                <div id="printArea" class="col-md-10 offset-1">
+                <div class="col-sm bill">
+                  <div class="name col-sm"><h2>{{ hotel.hotel_name | title }}</h2></div>
+                  <div class="detail col-sm">
+                    <b class="text-dark">Bill No.:</b> {{ bill.bill_no | cut:bill.superkey | cut:"BI"}}<br>
+                    <div class="row">
+                      <div class="col-md">
+                        <b class="text-dark">Room ID:</b> {{ bill.room_id }}
+                      </div>
+                      <div class="col-md offset-md-4">
+                        <b class="text-dark">Customer ID:</b> {{ bill.customer_id }}
+                      </div>
+                    </div>
+                    <b class="text-dark">No of Days to Stay:</b> {{ bill.no_of_days }}<br>
+                    <b class="text-dark">Cost:</b> {{ bill.cost }}<br>
+                    <b class="text-dark">Extra Work:</b> {{ bill.type_of_work | default:"No Extra Work"}}<br>
+                    <b class="text-dark">Extra Cost:</b> {{ bill.extra | default:"No Extra Cost" }}<br>
+                    <div class="name"></div>
+                    <div class="col-md">
+                      <div class="col-md-0">
+                        <b class="text-dark">Total Cost:</b> <b>{{ bill.cost | add:bill.extra }}</b> 
+                      </div>
+                      <div class="col-md-4">
+                      <b class="text-dark">Sign</b>
+                      <div class="sign">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <button type="submit" id="printpagebutton" onclick="printpage()" class="btn btn-success btn-md offset-md-10">
+              <i class="fa fa-print"></i> print
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function printpage() {
+      var printButton = document.getElementById("printpagebutton");
+      printButton.style.visibility = 'hidden';
+      window.print("printArea")
+      printButton.style.visibility = 'visible';
+    }
+  </script>
+{% endblock %}

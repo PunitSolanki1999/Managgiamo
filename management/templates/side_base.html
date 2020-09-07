@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/managgiamo_logo.png' %}">
+    <!-- Title Page-->
+    <title>Maneggiamo</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{% static 'new/css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'new/vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'new/vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'new/vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'new/css/theme.css' %}" rel="stylesheet" media="all">
+</head>
+<body class="animsition">
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-4 col-md-4 offset-md-4">
+                            <div class="logo">
+                                <a href="{% url 'all:user-login' %}">
+                                    <img class="col" src="{% static 'front/img/logo.jpg' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    <!-- photography_slider_area_start -->
+    {% block content %}
+    {% endblock %}
+    <!-- most_recent_blog_end -->
+</body>
+<!-- Jquery JS-->
+<script src="{% static 'new/vendor/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'new/vendor/bootstrap-4.1/popper.min.js' %}"></script>
+<script src="{% static 'new/vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+<script src="{% static 'new/vendor/slick/slick.min.js' %}"></script>
+<script src="{% static 'new/vendor/wow/wow.min.js' %}"></script>
+<script src="{% static 'new/vendor/animsition/animsition.min.js' %}"></script>
+<script src="{% static 'new/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+<script src="{% static 'new/vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'new/vendor/counter-up/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'new/vendor/circle-progress/circle-progress.min.js' %}"></script>
+<script src="{% static 'new/vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'new/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+<script src="{% static 'new/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'new/js/main.js' %}"></script>
+</html>

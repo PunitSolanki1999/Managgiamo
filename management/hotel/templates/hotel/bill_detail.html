@@ -1,0 +1,83 @@
+{% extends 'hotel_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit">
+    <div class="page-container">
+      <div class='main-content'>
+        <div class="col-lg-6 offset-lg-3">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <h3 class="text-center title-2">Customer Detail</h3>
+              </div>
+              <div style="border:1px solid orange; background-color: orange; margin-top:7px;"></div>
+              <form action='.' method='POST'>{% csrf_token %}
+                <label>Bill No.</label><input class="form-control" type="text" name="bill_no"><br>
+                <button type="submit" class="btn btn-success btn-sm">
+                  <i class="fa fa-dot-circle-o"></i> Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% if confirm %}
+          {% if bill %}
+            <div class="row m-t-30">
+              <div class="col-md-10 offset-md-1">
+                <!-- DATA TABLE-->
+                <div class="table-responsive m-b-40">
+                  <table class="table table-borderless table-data3">
+                    <thead>            
+                      <tr>
+                        <th>Bill No.</th>
+                        <th>Room ID</th>
+                        <th>Customer ID</th>
+                        <th>No Of Days</th>
+                        <th>Cost</th>
+                        <th>Extra Amount</th>
+                        <th>Type of Work</th>
+                        <th>Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in bill %}
+                        <tr class="btn-link" style="cursor:pointer; " onclick="location.href = this.getElementsByTagName('a').item(0).getAttribute('href');">
+                          <td><a href="{% url 'hotel:bill-generation' pk=i.pk %}">{{ i.bill_no | cut:i.superkey | cut:"BI"}}</td>
+                          <td>{{ i.room_id }}</td>
+                          <td>{{ i.customer_id }}</td>
+                          <td>{{ i.no_of_days }}</td>
+                          <td>{{ i.cost }}</td>
+                          <td>{{ i.extra | default:"No extra cost"}}</td>
+                          <td>{{ i.type_of_work | default:"No Work" }}</td>
+                          <td>{{ i.cost | add:i.extra }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

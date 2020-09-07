@@ -1,0 +1,50 @@
+{% extends 'library_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" ">
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Register The Book</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px;"></div>
+                <form action='.' method='POST'>{% csrf_token %}
+                  {{ form | crispy}}
+                  <label>No. of Books to Register in Library* </label><input type="text" class="au-input au-input--full" name="book"  required placeholder="Total No. of books to register"><br><br>
+                  <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Enter Book
+                  </button>
+                  <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-ban"></i> Reset
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

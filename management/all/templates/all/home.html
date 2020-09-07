@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- photography_slider_area_end -->
+    <!-- most_recent_blog_start -->
+    <div class="most_recent_blog" style="margin-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-33">
+                        <h3>Your Managements</h3>
+                    </div>
+                </div>
+                {% if 'school' in home %}
+                <div class="col-xl-12 col-md-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="single_blog">
+                                <div class="blog_thumb">
+                                    <a href="{% url 'school:school-interface' %}">
+                                        <img src="{% static 'front/img/most_recent/single-1.jpg' %}" alt="" height="262px" width="362px">
+                                    </a>
+                                </div>
+                                <div class="blog_meta">
+                                    <h3><a href="{% url 'school:school-interface' %}"><center>School Management</center></a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if 'library' in home %}
+                        <div class="col-xl-6 col-md-6">
+                            <div class="single_blog">
+                                <div class="blog_thumb">
+                                    <a href="{% url 'library:library-interface' %}">
+                                        <img src="{% static 'front/img/most_recent/single-2.png' %}" alt="" height="262px" width="362px">
+                                    </a>
+                                </div>
+                                <div class="blog_meta">
+                                    <h3><a href="{% url 'library:library-interface' %}"><center>Library Management</center></a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if 'hotel' in home %}
+                        <div class="col-xl-6 col-md-6">
+                            <div class="single_blog">
+                                <div class="blog_thumb">
+                                    <a href="{% url 'hotel:hotel-interface' %}">
+                                        <img src="{% static 'front/img/most_recent/single-3.png' %}" alt=""  height="262px" width="362px" >
+                                    </a>
+                                </div>
+                                <div class="blog_meta">
+                                    <h3><a href="{% url 'hotel:hotel-interface' %}"><center>Hotel Management</center></a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if 'rest' in home %}
+                        <div class="col-xl-6 col-md-6">
+                            <div class="single_blog">
+                                <div class="blog_thumb">
+                                    <a href="{% url 'rest:rest-interface' %}">
+                                        <img src="{% static 'front/img/most_recent/single-4.jpg' %}" alt=""  height="262px" width="362px">
+                                    </a>
+                                </div>
+                                <div class="blog_meta">
+                                    <h3><a href="{% url 'rest:rest-interface' %}"><center>Restaurent Management</center></a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+{% endblock %}

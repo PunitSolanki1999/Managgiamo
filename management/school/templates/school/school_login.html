@@ -1,0 +1,67 @@
+{% extends 'side_base.html' %}
+{% block content %}
+{% load static %}
+    <div class="page-wrapper">
+        <div class="page-content--bge5">
+            <div class="container">
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="#">
+                                <img class="rounded" src="{% static 'new/images/school_logo.png' %}" alt="Library Login">
+                            </a>
+                        </div>
+                        <div class="login-form">
+                            <form action="." method="POST">{% csrf_token %}
+                                {% if username_not_available == True %}
+                                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+										<span class="badge badge-pill badge-danger">Failed</span>
+										Username is Incorrect.
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+                                {% elif password_not_available == True %}
+                                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                        <span class="badge badge-pill badge-danger">Failed</span>
+                                        Password is Incorrect
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="login-checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember">Remember Me
+                                    </label>
+                                    <label>
+                                        <a href="{% url 'school:username' %}">Forgotten Password?</a>
+                                    </label>
+                                </div>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                            </form>
+                            <div class="register-link">
+                                <p>
+                                    Don't you have account?
+                                    <a href="{% url 'school:school-register' %}">Sign Up Here</a>
+                                </p>
+                            </div>
+                            <div class="register-link">
+                                <a class="btn btn-success" href="{% url 'school:faculty-login' %}">Faculty Login</a>
+                                <a class="btn btn-success" href="{% url 'school:examiner-login' %}">Examiner Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

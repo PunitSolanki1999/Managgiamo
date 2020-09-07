@@ -1,0 +1,56 @@
+{% extends 'rest_base/base1.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style>
+    @media screen and (max-width: 1000px)  {
+      .punit {
+        margin-top:160px;
+        height:auto;
+      }
+    }
+    @media screen and (min-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+    @media screen and (max-width: 1000px)  {
+      .page-container {
+        height:auto;
+      }
+    }
+  </style>
+  <div class="punit" >
+    <div class="page-container" ">
+      <div class='main-content'>
+        <div class="section__content section__content--p30">
+          <div class="col-lg ">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h3 class="text-center title-2">Register the Employee</h3>
+                </div>
+                <div style="border:1px solid orange; background-color: orange; margin-top:7px; margin-bottom:10px;"></div>
+                <form action='.' method='POST'>{% csrf_token %}
+                  <div class="row">
+                    <div class="col-sm-4">
+                      {{ form | crispy }}
+                    </div>
+                    <div class="col-sm offset-sm-4">
+                      <img class="img-fluid img-responsive img-thumbnail" style="border-color:black; width:215px; height:260px;" id="blah" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgzqKTJr-pCmysvkhCUCAGo6M9VSQJnK7Y2ocQCqNG2lQj4kljig" alt="your image" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Register Employee
+                  </button>
+                  <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-ban"></i> Reset
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
