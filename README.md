@@ -1,0 +1,2 @@
+# Managgiamo
+ Minor Project 
